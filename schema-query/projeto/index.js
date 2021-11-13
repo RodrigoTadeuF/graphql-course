@@ -1,14 +1,13 @@
-const { AppoloServer, gql } = require('apollo-server');
+const { ApolloServer, gql } = require('apollo-server');
+const { importSchema } = require('graphql-import');
+const resolvers = require('./resolvers');
 
-const typeDefs = gql``
 
-const resolvers = {}
-
-const server = new AppoloServer({
-    typeDefs,
-    resolvers
+const server = new ApolloServer({
+  typeDefs: importSchema('./schema/index.graphql'),
+  resolvers: resolvers
 });
 
 server.listen().then(({ url }) => {
-    console.log(`Executing in ${url}`)
+  console.log(`Executing in ${url}`)
 })
