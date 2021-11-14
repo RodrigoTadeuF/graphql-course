@@ -4,10 +4,13 @@ module.exports = {
     usuarios() {
         return usuarios
     },
-    usuario(_, { id }) {
-        const sels = usuarios
-            .filter(u => u.id === id)
-        return sels ? sels[0] : null
+    usuario(_, { filtro }) {
+        // const sels = usuarios
+        //     .filter(u => u.id === id)
+        const i = indiceUsuario(filtro);
+        if(i < 0) return null
+        // return sels ? sels[0] : null
+        return usuarios[i]
     },
     perfis() {
         return perfis
